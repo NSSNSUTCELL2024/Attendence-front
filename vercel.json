@@ -5,8 +5,44 @@
             "dest": "/",
         },
         {
-            "src":"/test",
-            "dest":"/"
+            "src":"/user-login",
+            "dest":"/user-login"
+        },
+        {
+            "src": "/admin-login",
+            "dest": "/admin-login",
+        },
+        {
+            "src": "/user-dashboard",
+            "dest": "/user-dashboard",
+        },
+        {
+            "src": "/admin-dashboard",
+            "dest": "/admin-dashboard",
+        },
+        {
+            "src": "/create-event",
+            "dest": "/create-event",
+        },
+        {
+            "src": "/manage-attendance",
+            "dest": "/manage-attendance",
+        },
+        {
+            "src": "/mark-attendance/:eventId",
+            "dest": "/mark-attendance/:eventId",
+        },
+        {
+            "src": "/mark-department-work",
+            "dest": "/mark-department-work",
+        },
+        {
+            "src": "/view-attendance",
+            "dest": "/view-attendance",
+        },
+        {
+            "src": "/student-report/:studentId",
+            "dest": "/student-report/:studentId",
         }
     ]
 }
