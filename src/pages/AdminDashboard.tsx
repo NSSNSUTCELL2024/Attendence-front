@@ -43,7 +43,7 @@ const AdminDashboard = () => {
     const fetchVisibility = async () => {
       try {
         const res = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/student/working-hours`
+          `${import.meta.env.VITE_BACKEND_URL}/checkvisibility`
         );
         setWorkingHoursVisible(res.data.visible);
       } catch (err) {
