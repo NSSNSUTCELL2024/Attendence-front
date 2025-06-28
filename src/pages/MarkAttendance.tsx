@@ -32,6 +32,7 @@ const MarkAttendance = () => {
   const [attendance, setAttendance] = useState<{ [key: string]: boolean }>({});
   const [selectedBranch, setSelectedBranch] = useState<string>("");
   const [completedBranches, setCompletedBranches] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   const branches = [
     "CSAI", "CSE", "CSDS", "MAC", "IT", "ITNS", "ECE", "EVDT", "EE", "ICE", "ME", "BT",
@@ -42,9 +43,9 @@ const MarkAttendance = () => {
     const fetchData = async () => {
       try {
         const [eventRes, studentRes, attendanceRes] = await Promise.all([
-          axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getoneevent/${eventId}`,{withCredentials:true}),
-          axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/createuser`,{withCredentials:true}),
-          axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/attendance?eventId=${eventId}`,{withCredentials:true})
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/getoneevent/${eventId}`, { withCredentials: true }),
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/createuser`, { withCredentials: true }),
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/admin/attendance?eventId=${eventId}`, { withCredentials: true })
         ]);
 
         setEvent(eventRes.data);
@@ -78,7 +79,11 @@ const MarkAttendance = () => {
   }, [eventId]);
 
   const filteredStudents = selectedBranch
-    ? students.filter((student) => student.branch === selectedBranch)
+    ? students.filter((student) =>
+        student.branch === selectedBranch &&
+        (student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+         student.studentId.toLowerCase().includes(searchQuery.toLowerCase()))
+      )
     : [];
 
   const handleAttendanceChange = (studentId: string, isPresent: boolean) => {
@@ -198,11 +203,18 @@ const MarkAttendance = () => {
           <Card className="mb-6">
             <CardHeader>
               <CardTitle>
-                Students - {selectedBranch} (
-                {getSelectedStudentsInBranch(selectedBranch)}/{filteredStudents.length} selected)
+                Students - {selectedBranch} ({getSelectedStudentsInBranch(selectedBranch)}/{filteredStudents.length} selected)
               </CardTitle>
             </CardHeader>
             <CardContent>
+              <input
+                type="text"
+                placeholder="Search by name or student ID"
+                className="w-full mb-4 p-2 border rounded-md"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+
               <div className="space-y-4">
                 {filteredStudents.map((student) => (
                   <div
