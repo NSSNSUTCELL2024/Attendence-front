@@ -127,7 +127,7 @@ const UserDashboard = () => {
                       <div>
                         <p className="font-medium text-gray-900">{record.name}</p>
                         <p className="text-sm text-gray-600">
-                          {new Date(record.date).toLocaleDateString()}
+                          {new Date(record.date).toLocaleDateString('en-GB')}
                         </p>
                         {workingHoursVisible && (
                           <p className="text-xs text-blue-600 font-medium">
@@ -166,7 +166,7 @@ const UserDashboard = () => {
                         {new Date(work.date).toLocaleDateString()}
                       </p>
                       <p className="text-sm text-purple-600 mt-1">
-                        Department: {work.department?.toUpperCase()}
+                        Department: {work.department?.toUpperCase('en-GB')}
                       </p>
                       {workingHoursVisible && (
                         <p className="text-xs text-blue-600 font-medium">
