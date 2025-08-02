@@ -138,7 +138,7 @@ const ManageAttendance = () => {
                     </p>
                     <p>
                       <strong>Date:</strong>{" "}
-                      {new Date(event.date).toLocaleDateString()}
+                      {new Date(event.date).toLocaleDateString('en-GB')}
                     </p>
                     <p>
                       <strong>Working Hours:</strong> {event.workingHours} hrs
