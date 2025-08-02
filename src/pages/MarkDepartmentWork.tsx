@@ -305,7 +305,7 @@ const MarkDepartmentWork = () => {
                           {work.studentName} • {work.department} • {work.workingHours} hrs
                         </p>
                         <p className="text-xs text-gray-500">
-                          {new Date(work.date).toLocaleDateString()}
+                          {new Date(work.date).toLocaleDateString('en-GB')}
                         </p>
                       </div>
                       <Button
