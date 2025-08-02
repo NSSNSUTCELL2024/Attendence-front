@@ -188,7 +188,7 @@ const StudentReport = () => {
                         <td className="py-3 px-4 text-gray-700">
                           <div className="flex items-center gap-2">
                             <Calendar className="w-4 h-4 text-gray-400" />
-                            {new Date(event.date).toLocaleDateString()}
+                            {new Date(event.date).toLocaleDateString('en-GB')}
                           </div>
                         </td>
                         <td className="py-3 px-4 font-medium text-gray-900">{event.name}</td>
@@ -245,7 +245,7 @@ const StudentReport = () => {
                         <td className="py-3 px-4 text-gray-700">
                           <div className="flex items-center gap-2">
                             <Calendar className="w-4 h-4 text-gray-400" />
-                            {new Date(work.date).toLocaleDateString()}
+                            {new Date(work.date).toLocaleDateString('en-GB')}
                           </div>
                         </td>
                         <td className="py-3 px-4 font-medium text-gray-900">{work.department.toUpperCase()}</td>
